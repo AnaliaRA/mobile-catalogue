@@ -1,0 +1,33 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/typography' as *;
+@use '../../../shared/styles/mixins' as *;
+@use '../../../shared/styles/breakpoints' as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include tablet-up {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include desktop-up {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include wide-up {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.empty {
+  @include flex-center;
+  padding: $spacing-2xl;
+  text-align: center;
+}
+
+.emptyText {
+  @include body-large;
+  color: $color-secondary;
+  margin: 0;
+}

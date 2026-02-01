@@ -1,0 +1,56 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/typography' as *;
+@use '../../../shared/styles/mixins' as *;
+
+.iconButton {
+  @include button-reset;
+  @include flex-center;
+  padding: $spacing-sm;
+  color: $color-secondary;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-error;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.linkButton {
+  @include button-reset;
+  @include body-small;
+  color: $color-secondary;
+  text-decoration: underline;
+  padding: $spacing-xs;
+
+  &:hover {
+    color: $color-error;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.buttonIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: $spacing-xs;
+}

@@ -1,0 +1,33 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/mixins' as *;
+@use '../../../shared/styles/typography' as *;
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-xs;
+  color: $color-foreground;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-secondary;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.count {
+  font-size: 0.75rem;
+  font-weight: $font-weight-normal;
+  color: $color-foreground;
+  min-width: 1em;
+}

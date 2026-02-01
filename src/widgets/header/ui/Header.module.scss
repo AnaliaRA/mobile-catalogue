@@ -1,0 +1,38 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/mixins' as *;
+@use '../../../shared/styles/typography' as *;
+@use '../../../shared/styles/breakpoints' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: $z-header;
+  background: $color-background;
+}
+
+.container {
+  @include container;
+  @include flex-between;
+  height: 60px;
+
+  @include tablet-up {
+    height: 70px;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}

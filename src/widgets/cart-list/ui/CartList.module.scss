@@ -1,0 +1,111 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/typography' as *;
+@use '../../../shared/styles/breakpoints' as *;
+@use '../../../shared/styles/mixins' as *;
+
+.container {
+  @include flex-column;
+}
+
+.title {
+  @include heading-3;
+  text-transform: uppercase;
+  margin: 0 0 $spacing-xl;
+}
+
+.list {
+  @include flex-column;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background: $color-background;
+  border-top: 1px solid $color-border;
+  z-index: $z-header;
+
+  @include tablet-up {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-lg $spacing-xl;
+  }
+}
+
+.totalRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  @include tablet-up {
+    justify-content: flex-end;
+    gap: $spacing-md;
+    width: auto;
+    order: 2;
+  }
+}
+
+.totalLabel {
+  @include body-base;
+  font-weight: $font-weight-normal;
+  text-transform: uppercase;
+}
+
+.totalValue {
+  @include body-base;
+  font-weight: $font-weight-normal;
+}
+
+.buttonsRow {
+  display: flex;
+  gap: $spacing-md;
+  width: 100%;
+
+  @include tablet-up {
+    display: contents;
+  }
+}
+
+.continueLink {
+  flex: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  > button {
+    width: 100%;
+  }
+
+  @include tablet-up {
+    flex: none;
+    order: 1;
+
+    > button {
+      width: auto;
+    }
+  }
+}
+
+.continueButton {
+  text-transform: uppercase;
+}
+
+.payButton {
+  flex: 1;
+
+  @include tablet-up {
+    flex: none;
+    order: 3;
+    min-width: 150px;
+  }
+
+  @include desktop-up {
+    min-width: 180px;
+  }
+}

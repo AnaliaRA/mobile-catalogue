@@ -1,0 +1,68 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/typography' as *;
+@use '../../../shared/styles/mixins' as *;
+@use '../../../shared/styles/breakpoints' as *;
+
+.wrapper {
+  @include flex-column;
+  gap: $spacing-2xl;
+}
+
+.container {
+  @include flex-column;
+  gap: $spacing-xl;
+
+  @include tablet-up {
+    flex-direction: row;
+    gap: $spacing-2xl;
+  }
+}
+
+.imageSection {
+  flex: 1;
+
+  @include tablet-up {
+    position: sticky;
+    align-self: flex-start;
+    max-width: 50%;
+  }
+}
+
+.infoSection {
+  flex: 0 1 400px;
+  @include flex-column;
+  gap: $spacing-2xl;
+  margin-top: $spacing-2xl;
+  padding-top: $spacing-2xl;
+
+  @include tablet-up {
+    padding-left: $spacing-xl;
+  }
+}
+
+.header {
+  @include flex-column;
+  gap: $spacing-md;
+}
+
+.name {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-light;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.options {
+  @include flex-column;
+  gap: $spacing-2xl;
+}
+
+.actions {
+  padding: $spacing-md 0;
+}
+
+.specs {
+  width: 100%;
+}

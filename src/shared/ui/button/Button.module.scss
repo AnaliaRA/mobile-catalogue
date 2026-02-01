@@ -1,0 +1,147 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  font-family: inherit;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: $radius-sm;
+  transition: all $transition-fast;
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+// Variants
+.primary {
+  background-color: $color-primary;
+  color: $color-background;
+  border-color: $color-primary;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+
+  &:active:not(:disabled) {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    background-color: $color-disabled;
+    border-color: $color-disabled;
+    color: $color-disabled-text;
+  }
+}
+
+.secondary {
+  background-color: transparent;
+  color: $color-primary;
+  border-color: $color-border;
+
+  &:hover:not(:disabled) {
+    border-color: $color-primary;
+  }
+
+  &:active:not(:disabled) {
+    background-color: rgba($color-primary, 0.05);
+  }
+
+  &:disabled {
+    background-color: $color-disabled;
+    border-color: $color-disabled;
+    color: $color-disabled-text;
+  }
+}
+
+.ghost {
+  background-color: transparent;
+  color: $color-primary;
+  border-color: transparent;
+
+  &:hover:not(:disabled) {
+    background-color: rgba($color-primary, 0.05);
+  }
+
+  &:active:not(:disabled) {
+    background-color: rgba($color-primary, 0.1);
+  }
+
+  &:disabled {
+    color: $color-disabled-text;
+  }
+}
+
+// Sizes
+.sm {
+  padding: $spacing-xs $spacing-sm;
+  font-size: 0.875rem;
+  min-height: 32px;
+}
+
+.md {
+  padding: $spacing-sm $spacing-md;
+  font-size: 1rem;
+  min-height: 40px;
+}
+
+.lg {
+  padding: $spacing-sm $spacing-lg;
+  font-size: 1rem;
+  min-height: 48px;
+}
+
+// Full width
+.fullWidth {
+  width: 100%;
+}
+
+// Loading state
+.loading {
+  position: relative;
+  pointer-events: none;
+
+  .content {
+    opacity: 0.7;
+  }
+}
+
+.spinner {
+  @include flex-center;
+}
+
+.spinnerIcon {
+  width: 1em;
+  height: 1em;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.icon {
+  @include flex-center;
+  flex-shrink: 0;
+}
+
+.content {
+  display: inline-flex;
+  align-items: center;
+}

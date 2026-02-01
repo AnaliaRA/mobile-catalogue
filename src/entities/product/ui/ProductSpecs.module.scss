@@ -1,0 +1,47 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/typography' as *;
+@use '../../../shared/styles/breakpoints' as *;
+
+.container {
+  margin-top: $spacing-3xl;
+}
+
+.title {
+  @include heading-3;
+  margin: 0 0 $spacing-lg;
+}
+
+.list {
+  margin: 0;
+  border-bottom: 0.5px solid $color-border;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-sm;
+  padding: $spacing-sm 0;
+  border-top: 0.5px solid $color-border;
+
+  @include tablet-up {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+.label {
+  @include body-small;
+  color: $color-secondary;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.value {
+  @include body-small;
+  color: $color-foreground;
+  margin: 0;
+  text-align: right;
+
+  @include tablet-up {
+    text-align: left;
+  }
+}

@@ -1,0 +1,69 @@
+@use 'sass:map';
+
+$breakpoints: (
+  'mobile': 320px,
+  'tablet': 768px,
+  'desktop': 1024px,
+  'wide': 1440px,
+);
+
+// Respond to breakpoint (min-width)
+@mixin respond-to($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (min-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$breakpoint}' not found in $breakpoints map.";
+  }
+}
+
+// Respond below breakpoint (max-width)
+@mixin respond-below($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (max-width: #{map.get($breakpoints, $breakpoint) - 1px}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$breakpoint}' not found in $breakpoints map.";
+  }
+}
+
+// Respond between breakpoints
+@mixin respond-between($lower, $upper) {
+  @if map.has-key($breakpoints, $lower) and map.has-key($breakpoints, $upper) {
+    @media (min-width: map.get($breakpoints, $lower)) and (max-width: #{map.get($breakpoints, $upper) - 1px}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoints '#{$lower}' or '#{$upper}' not found in $breakpoints map.";
+  }
+}
+
+// Mobile only
+@mixin mobile-only {
+  @include respond-below('tablet') {
+    @content;
+  }
+}
+
+// Tablet and up
+@mixin tablet-up {
+  @include respond-to('tablet') {
+    @content;
+  }
+}
+
+// Desktop and up
+@mixin desktop-up {
+  @include respond-to('desktop') {
+    @content;
+  }
+}
+
+// Wide screens and up
+@mixin wide-up {
+  @include respond-to('wide') {
+    @content;
+  }
+}

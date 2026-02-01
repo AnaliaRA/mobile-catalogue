@@ -1,0 +1,69 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fullScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($color-background, 0.8);
+  z-index: $z-index-modal;
+}
+
+.spinner {
+  animation: rotate 1.5s linear infinite;
+}
+
+// Sizes
+.sm .spinner {
+  width: 20px;
+  height: 20px;
+}
+
+.md .spinner {
+  width: 32px;
+  height: 32px;
+}
+
+.lg .spinner {
+  width: 48px;
+  height: 48px;
+}
+
+.circle {
+  stroke: $color-primary;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+.srOnly {
+  @include visually-hidden;
+}

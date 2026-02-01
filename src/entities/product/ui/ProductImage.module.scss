@@ -1,0 +1,44 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/breakpoints' as *;
+
+.container {
+  width: 100%;
+}
+
+.imageWrapper {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+
+  @include tablet-up {
+    aspect-ratio: 1;
+  }
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #666;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.spinnerHidden {
+  display: none;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.image {
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}

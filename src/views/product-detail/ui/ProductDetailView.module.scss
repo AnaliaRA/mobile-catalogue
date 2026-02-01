@@ -1,0 +1,38 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/mixins' as *;
+@use '../../../shared/styles/typography' as *;
+
+.container {
+  @include container;
+  padding-top: $spacing-md;
+  padding-bottom: $spacing-2xl;
+}
+
+.breadcrumb {
+  margin-bottom: $spacing-lg;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  color: $color-secondary;
+  text-decoration: none;
+  @include body-small;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-foreground;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.backIcon {
+  width: 16px;
+  height: 16px;
+}
