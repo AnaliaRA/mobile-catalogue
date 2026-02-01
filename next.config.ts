@@ -18,6 +18,12 @@ const nextConfig: NextConfig = {
         hostname: 'prueba-tecnica-api-tienda-moviles.onrender.com',
         pathname: '/images/**',
       },
+      // For E2E test fixtures
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+        pathname: '/**',
+      },
     ],
   },
 };

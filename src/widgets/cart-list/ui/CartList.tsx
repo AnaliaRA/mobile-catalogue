@@ -6,6 +6,7 @@ import { useRemoveFromCart } from '@/features/remove-from-cart';
 import { Button } from '@/shared/ui';
 import { ROUTES } from '@/shared/config';
 import { formatPrice } from '@/shared/lib';
+import buttonStyles from '@/shared/ui/button/Button.module.scss';
 import styles from './CartList.module.scss';
 
 export interface CartListProps {
@@ -42,15 +43,16 @@ export function CartList({ className = '' }: CartListProps) {
         )}
 
         <div className={styles.buttonsRow}>
-          <Link href={ROUTES.home} className={styles.continueLink}>
-            <Button variant="secondary" size="lg" className={styles.continueButton}>
-              CONTINUE SHOPPING
-            </Button>
+          <Link
+            href={ROUTES.home}
+            className={`${buttonStyles.button} ${buttonStyles.secondary} ${buttonStyles.lg} ${styles.continueButton}`}
+          >
+            Continue Shopping
           </Link>
 
           {!isEmpty && (
             <Button variant="primary" size="lg" className={styles.payButton}>
-              PAY
+              Pay
             </Button>
           )}
         </div>

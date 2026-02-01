@@ -21,9 +21,16 @@ export function useSearch(options: UseSearchOptions = {}): UseSearchReturn {
   const { debounceMs = 300 } = options;
   const router = useRouter();
   const searchParams = useSearchParams();
-  const initialQuery = searchParams.get('q') || '';
+  const urlQuery = searchParams.get('q') || '';
 
-  const [query, setQuery] = useState(initialQuery);
+  const [query, setQuery] = useState(urlQuery);
+  const [prevUrlQuery, setPrevUrlQuery] = useState(urlQuery);
+
+  // Sync query state when URL changes externally (e.g., browser back/forward)
+  if (prevUrlQuery !== urlQuery) {
+    setQuery(urlQuery);
+    setPrevUrlQuery(urlQuery);
+  }
 
   const debouncedQuery = useDebounce(query, debounceMs);
 
@@ -31,7 +38,10 @@ export function useSearch(options: UseSearchOptions = {}): UseSearchReturn {
 
   useEffect(() => {
     // Skip when debounced query matches URL
-    if (debouncedQuery === initialQuery) return;
+    if (debouncedQuery === urlQuery) return;
+
+    // Skip if user has already moved on (query changed but debounce hasn't caught up)
+    if (query !== debouncedQuery) return;
 
     const trimmed = debouncedQuery.trim();
 
@@ -40,7 +50,7 @@ export function useSearch(options: UseSearchOptions = {}): UseSearchReturn {
     } else {
       router.push(ROUTES.home);
     }
-  }, [debouncedQuery, router, initialQuery]);
+  }, [debouncedQuery, query, router, urlQuery]);
 
   const handleSearch = useCallback((value: string) => {
     setQuery(value);

@@ -7,8 +7,6 @@ export interface HorizontalScrollProps {
   children: ReactNode;
   /** Show the scroll progress indicator */
   showIndicator?: boolean;
-  /** Width of each item (for consistent sizing) */
-  itemWidth?: number | { mobile: number; tablet: number; desktop: number };
   /** Gap between items in pixels */
   gap?: number;
   /** Additional class name */
@@ -18,7 +16,6 @@ export interface HorizontalScrollProps {
 export function HorizontalScroll({
   children,
   showIndicator = true,
-  itemWidth,
   gap = 0,
   className = '',
 }: HorizontalScrollProps) {
@@ -65,21 +62,6 @@ export function HorizontalScroll({
   // Calculate thumb position
   const thumbPosition = (scrollProgress / 100) * (100 - thumbWidth);
 
-  // Build item style if itemWidth is provided
-  const getItemStyle = () => {
-    if (!itemWidth) return undefined;
-
-    if (typeof itemWidth === 'number') {
-      return { '--item-width': `${itemWidth}px` } as React.CSSProperties;
-    }
-
-    return {
-      '--item-width-mobile': `${itemWidth.mobile}px`,
-      '--item-width-tablet': `${itemWidth.tablet}px`,
-      '--item-width-desktop': `${itemWidth.desktop}px`,
-    } as React.CSSProperties;
-  };
-
   return (
     <div className={`${styles.container} ${className}`}>
       <div className={styles.scrollWrapper}>
@@ -87,7 +69,7 @@ export function HorizontalScroll({
           ref={scrollRef}
           className={styles.scrollContainer}
           onScroll={handleScroll}
-          style={{ gap: gap > 0 ? `${gap}px` : undefined, ...getItemStyle() }}
+          style={gap > 0 ? { gap: `${gap}px` } : undefined}
         >
           {children}
         </div>

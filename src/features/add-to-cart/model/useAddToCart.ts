@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useCart, type CartItemType } from '@/entities/cart';
 
 export interface UseAddToCartOptions {
@@ -20,9 +20,24 @@ export function useAddToCart(options: UseAddToCartOptions = {}): UseAddToCartRet
   const { addItem } = useCart();
   const [isAdding, setIsAdding] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const addToCart = useCallback(
     (item: Omit<CartItemType, 'id' | 'quantity'>) => {
+      // Clear any existing timeout
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+
       setIsAdding(true);
       try {
         addItem(item);
@@ -30,7 +45,7 @@ export function useAddToCart(options: UseAddToCartOptions = {}): UseAddToCartRet
         onSuccess?.();
 
         // Reset isAdded after animation
-        setTimeout(() => setIsAdded(false), 2000);
+        timeoutRef.current = setTimeout(() => setIsAdded(false), 2000);
       } catch (error) {
         onError?.(error as Error);
       } finally {
@@ -41,6 +56,11 @@ export function useAddToCart(options: UseAddToCartOptions = {}): UseAddToCartRet
   );
 
   const reset = useCallback(() => {
+    // Clear timeout when manually resetting
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
     setIsAdding(false);
     setIsAdded(false);
   }, []);
