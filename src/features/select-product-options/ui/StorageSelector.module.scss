@@ -1,0 +1,53 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/typography' as *;
+@use '../../../shared/styles/mixins' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+.label {
+  @include body-small;
+  color: $color-secondary;
+  text-transform: uppercase;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.option {
+  @include button-reset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-md $spacing-lg;
+  min-width: 80px;
+  border: 0.5px solid $color-border;
+  background: $color-background;
+  transition: border-color $transition-fast;
+  margin-right: -0.5px;
+
+  &:hover {
+    border-color: $color-border-hover;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.selected {
+  border-color: $color-border-selected;
+  border-width: 1px;
+  z-index: 1;
+}
+
+.capacity {
+  @include body-small;
+  font-weight: $font-weight-normal;
+}

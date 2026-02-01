@@ -1,0 +1,62 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/typography' as *;
+@use '../../../shared/styles/mixins' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.label {
+  @include body-small;
+  color: $color-secondary;
+  text-transform: uppercase;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.option {
+  @include button-reset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: $color-background;
+  transition: box-shadow $transition-fast;
+
+  &:hover {
+    box-shadow: 0 0 0 1px $color-secondary;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.selected {
+  box-shadow: 0 0 0 1px $color-foreground;
+}
+
+.colorSwatch {
+  width: 28px;
+  height: 28px;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.colorName {
+  @include visually-hidden;
+}
+
+.selectedName {
+  @include body-small;
+  color: $color-foreground;
+  margin-top: $spacing-xs;
+  min-height: 1.5em;
+}

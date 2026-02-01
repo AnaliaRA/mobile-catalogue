@@ -1,0 +1,28 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/mixins' as *;
+@use '../../../shared/styles/typography' as *;
+
+.container {
+  @include container;
+  padding-top: $spacing-xl;
+  padding-bottom: $spacing-2xl;
+}
+
+.searchSection {
+  margin-bottom: $spacing-lg;
+}
+
+.searchBar {
+  max-width: 100%;
+}
+
+.searchPlaceholder {
+  height: 48px;
+  background: #f5f5f5;
+  border-radius: 0;
+}
+
+.resultsCount {
+  @include caption;
+  margin: 0 0 $spacing-xl;
+}

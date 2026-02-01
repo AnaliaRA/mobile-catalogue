@@ -1,0 +1,68 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/typography' as *;
+@use '../../../shared/styles/mixins' as *;
+@use '../../../shared/styles/breakpoints' as *;
+
+.item {
+  display: flex;
+  gap: $spacing-lg;
+  padding: $spacing-xl 0;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+  background: $color-background;
+
+  @include tablet-up {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.image {
+  object-fit: contain;
+}
+
+.details {
+  @include flex-column;
+  gap: $spacing-xs;
+}
+
+.name {
+  @include body-base;
+  font-weight: $font-weight-normal;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.specs {
+  @include body-small;
+  color: $color-secondary;
+}
+
+.price {
+  @include body-base;
+  margin-top: $spacing-xs;
+}
+
+.quantity {
+  @include body-small;
+  color: $color-secondary;
+}
+
+.removeButton {
+  @include button-reset;
+  @include body-small;
+  color: $color-error;
+  text-decoration: none;
+  padding: 0;
+  margin-top: $spacing-lg;
+  align-self: flex-start;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

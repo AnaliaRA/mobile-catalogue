@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+out/
+build/
+dist/
+
+# Cache
+.cache/
+
+# Coverage
+coverage/
+
+# Playwright
+playwright-report/
+test-results/
+
+# Generated files
+next-env.d.ts
+*.lock
+package-lock.json
+
+# Assets
+public/
+*.svg
+*.ico
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+
+# Documentation (optional - remove if you want to format these)
+*.md

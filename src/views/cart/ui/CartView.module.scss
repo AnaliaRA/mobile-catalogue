@@ -1,0 +1,9 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/mixins' as *;
+@use '../../../shared/styles/typography' as *;
+
+.container {
+  @include container;
+  padding-top: $spacing-xl;
+  padding-bottom: 120px;
+}

@@ -1,0 +1,22 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/typography' as *;
+
+.price {
+  color: $color-foreground;
+}
+
+.sm {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-normal;
+}
+
+.md {
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+}
+
+.lg {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-light;
+  line-height: 1;
+}

@@ -1,0 +1,116 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/typography' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.label {
+  @include label;
+  color: $color-foreground;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  font-family: inherit;
+  font-size: 1rem;
+  color: $color-foreground;
+  background-color: $color-background;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  transition:
+    border-color $transition-fast,
+    box-shadow $transition-fast;
+
+  &::placeholder {
+    color: $color-secondary;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: $color-border-hover;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 1px $color-primary;
+  }
+
+  &:disabled {
+    background-color: rgba($color-border, 0.3);
+    cursor: not-allowed;
+  }
+}
+
+.hasError .input {
+  border-color: $color-error;
+
+  &:focus {
+    border-color: $color-error;
+    box-shadow: 0 0 0 1px $color-error;
+  }
+}
+
+.hasLeftIcon .input {
+  padding-left: 2.5rem;
+}
+
+.hasRightIcon .input {
+  padding-right: 2.5rem;
+}
+
+.leftIcon,
+.rightIcon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-secondary;
+}
+
+.leftIcon {
+  left: $spacing-sm;
+  pointer-events: none;
+}
+
+.rightIcon {
+  right: $spacing-xs;
+  padding: $spacing-xs;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: $radius-sm;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-foreground;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.error {
+  @include caption;
+  color: $color-error;
+}
+
+.helperText {
+  @include caption;
+  color: $color-secondary;
+}
