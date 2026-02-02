@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import { CartProvider } from '@/entities/cart';
 import { Header } from '@/widgets/header';
 import { APP_CONFIG } from '@/shared/config';
@@ -41,6 +42,7 @@ export default function RootLayout({
           <Header />
           <main id="main-content">{children}</main>
         </CartProvider>
+        <Analytics />
       </body>
     </html>
   );
