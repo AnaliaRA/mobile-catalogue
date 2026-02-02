@@ -63,7 +63,7 @@ cp .env.example .env.local
 Create a `.env.local` file with:
 
 ```env
-NEXT_PUBLIC_API_URL=https://prueba-tecnica-api-tienda-moviles.onrender.com
+NEXT_PUBLIC_API_URL=your_api_url_here
 NEXT_PUBLIC_API_KEY=your_api_key_here
 NEXT_PUBLIC_APP_NAME=MBST
 NEXT_PUBLIC_APP_URL=http://localhost:3000
@@ -215,8 +215,6 @@ Set these in your deployment platform:
 
 - `NEXT_PUBLIC_API_URL`
 - `NEXT_PUBLIC_API_KEY`
-- `NEXT_PUBLIC_APP_NAME`
-- `NEXT_PUBLIC_APP_URL`
 
 ## Development Modes
 
