@@ -7,6 +7,16 @@ updates:
     open-pull-requests-limit: 5
     labels:
       - "dependencies"
+    groups:
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      node-types:
+        patterns:
+          - "@types/node"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -14,3 +24,7 @@ updates:
     open-pull-requests-limit: 3
     labels:
       - "chore"
+    groups:
+      github-actions:
+        patterns:
+          - "actions/*"
