@@ -1,6 +1,9 @@
 # Dependencies
 node_modules/
 
+# workflows
+*.yml
+
 # Build outputs
 .next/
 out/
