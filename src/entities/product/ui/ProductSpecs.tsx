@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import type { ProductSpecs as ProductSpecsType } from '../model/types';
 import styles from './ProductSpecs.module.scss';
 
@@ -17,7 +18,10 @@ const SPEC_LABELS: Record<keyof ProductSpecsType, string> = {
   screenRefreshRate: 'Screen Refresh Rate',
 };
 
-export function ProductSpecs({ specs, className = '' }: ProductSpecsProps) {
+export const ProductSpecs = memo(function ProductSpecs({
+  specs,
+  className = '',
+}: ProductSpecsProps) {
   const specEntries = Object.entries(specs) as [keyof ProductSpecsType, string][];
 
   return (
@@ -33,4 +37,4 @@ export function ProductSpecs({ specs, className = '' }: ProductSpecsProps) {
       </dl>
     </section>
   );
-}
+});

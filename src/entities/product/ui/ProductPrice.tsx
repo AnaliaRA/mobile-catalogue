@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { formatPrice } from '@/shared/lib';
 import styles from './ProductPrice.module.scss';
 
@@ -8,7 +9,7 @@ export interface ProductPriceProps {
   className?: string;
 }
 
-export function ProductPrice({
+export const ProductPrice = memo(function ProductPrice({
   price,
   size = 'md',
   isStartingPrice = false,
@@ -18,4 +19,4 @@ export function ProductPrice({
   const priceText = isStartingPrice ? `From ${formatPrice(price)}` : formatPrice(price);
 
   return <span className={priceClasses}>{priceText}</span>;
-}
+});

@@ -41,6 +41,7 @@
 .specs {
   @include body-small;
   color: $color-secondary;
+  text-transform: uppercase;
 }
 
 .price {

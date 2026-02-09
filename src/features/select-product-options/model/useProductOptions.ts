@@ -24,7 +24,6 @@ export function useProductOptions({
   defaultColor = null,
   defaultStorage = null,
 }: UseProductOptionsProps): UseProductOptionsReturn {
-  // Start with null (no selection) unless defaults are provided
   const [selectedColor, setSelectedColor] = useState<ColorOption | null>(defaultColor);
   const [selectedStorage, setSelectedStorage] = useState<StorageOption | null>(defaultStorage);
 
@@ -36,7 +35,6 @@ export function useProductOptions({
     setSelectedStorage(storage);
   }, []);
 
-  // Use selected storage price, or minimum price when nothing selected
   const currentPrice = useMemo(() => {
     if (selectedStorage) {
       return selectedStorage.price;
@@ -45,16 +43,12 @@ export function useProductOptions({
     return Math.min(...storages.map((s) => s.price));
   }, [selectedStorage, storages]);
 
-  const isComplete = useMemo(() => {
-    return !!selectedColor && !!selectedStorage;
-  }, [selectedColor, selectedStorage]);
-
   return {
     selectedColor,
     selectedStorage,
     selectColor,
     selectStorage,
     currentPrice,
-    isComplete,
+    isComplete: !!selectedColor && !!selectedStorage,
   };
 }

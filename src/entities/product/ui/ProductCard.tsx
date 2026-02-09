@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ROUTES } from '@/shared/config';
@@ -13,7 +13,10 @@ export interface ProductCardProps {
   priority?: boolean;
 }
 
-export function ProductCard({ product, priority = false }: ProductCardProps) {
+export const ProductCard = memo(function ProductCard({
+  product,
+  priority = false,
+}: ProductCardProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const { id, name, brand, basePrice, imageUrl } = product;
 
@@ -38,13 +41,13 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           />
         </div>
         <div className={styles.content}>
-          <span className={styles.brand}>{brand.toUpperCase()}</span>
+          <span className={styles.brand}>{brand}</span>
           <div className={styles.nameRow}>
-            <h3 className={styles.name}>{name.toUpperCase()}</h3>
+            <h3 className={styles.name}>{name}</h3>
             <span className={styles.price}>{formatPrice(basePrice)}</span>
           </div>
         </div>
       </Link>
     </article>
   );
-}
+});

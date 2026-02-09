@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Image from 'next/image';
 import { formatPrice } from '@/shared/lib';
 import type { CartItem as CartItemType } from '../model/types';
@@ -9,10 +10,13 @@ export interface CartItemProps {
   showRemoveButton?: boolean;
 }
 
-export function CartItem({ item, onRemove, showRemoveButton = true }: CartItemProps) {
+export const CartItem = memo(function CartItem({
+  item,
+  onRemove,
+  showRemoveButton = true,
+}: CartItemProps) {
   const { id, name, brand, imageUrl, color, storage, quantity } = item;
   const totalPrice = storage.price * quantity;
-  const specsText = `${storage.capacity} | ${color.name.toUpperCase()}`;
 
   return (
     <article className={styles.item} data-testid="cart-item">
@@ -28,9 +32,11 @@ export function CartItem({ item, onRemove, showRemoveButton = true }: CartItemPr
 
       <div className={styles.details}>
         <h3 className={styles.name} data-testid="cart-item-name">
-          {name.toUpperCase()}
+          {name}
         </h3>
-        <span className={styles.specs}>{specsText}</span>
+        <span className={styles.specs}>
+          {storage.capacity} | {color.name}
+        </span>
         <span className={styles.price}>{formatPrice(totalPrice)}</span>
         {quantity > 1 && (
           <span className={styles.quantity} data-testid="cart-item-quantity">
@@ -52,4 +58,4 @@ export function CartItem({ item, onRemove, showRemoveButton = true }: CartItemPr
       </div>
     </article>
   );
-}
+});
