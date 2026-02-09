@@ -32,18 +32,20 @@ const RETRY_CONFIG = {
 
 export async function fetchAPI<T>(
   endpoint: string,
-  options: RequestInit = {},
+  options: RequestInit & { next?: NextFetchRequestConfig } = {},
   retryCount = 0
 ): Promise<T> {
   const url = `${API_CONFIG.baseUrl}${endpoint}`;
+  const { next: nextOptions, ...fetchOptions } = options;
 
   const response = await fetch(url, {
-    ...options,
+    ...fetchOptions,
     headers: {
       'x-api-key': API_CONFIG.apiKey,
       'Content-Type': 'application/json',
-      ...options.headers,
+      ...fetchOptions.headers,
     },
+    ...(nextOptions ? { next: nextOptions } : {}),
   });
 
   if (!response.ok) {
@@ -65,8 +67,11 @@ export async function fetchAPI<T>(
   return response.json();
 }
 
-export async function apiGet<T>(endpoint: string): Promise<T> {
-  return fetchAPI<T>(endpoint, { method: 'GET' });
+export async function apiGet<T>(
+  endpoint: string,
+  options?: { next?: NextFetchRequestConfig }
+): Promise<T> {
+  return fetchAPI<T>(endpoint, { method: 'GET', ...options });
 }
 
 export async function apiPost<T>(endpoint: string, body: unknown): Promise<T> {

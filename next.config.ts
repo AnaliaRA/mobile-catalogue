@@ -7,6 +7,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const nextConfig: NextConfig = {
   images: {
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'http',
@@ -25,6 +26,9 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+  },
+  experimental: {
+    optimizePackageImports: ['@/shared/ui', '@/entities/product', '@/entities/cart'],
   },
 };
 
